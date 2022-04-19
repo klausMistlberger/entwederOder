@@ -1,3 +1,3 @@
 # entweder-oder
 ## the desicion-making helping tool
-a somewhat coinflip-generator, but you can type in your desired outcomes
+a coinflip-generator with your personal predefined choices
