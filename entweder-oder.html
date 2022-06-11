@@ -5,8 +5,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entweder Oder</title>
-    <link rel="stylesheet" href="lib/bootstrap.min.css">
-    <link rel="stylesheet" href="css/eo.styles.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">   
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="css/eo.styles.css"> -->
+    <!-- <script src="js/script.js" defer></script> -->
+    <style>
+        #main {
+            display: flex; 
+            flex-wrap: wrap; 
+            margin: 2em auto;
+            padding: 1em 0; 
+            max-width: 1024px; 
+        }
+
+        #eingabe {
+            display: flex; 
+            margin: 1.5em auto; 
+            justify-content: space-evenly;
+            width: 80%; 
+        }
+
+        #ausgabe {
+            display: flex;
+            flex-direction: column;
+            margin: 0; 
+            font-size: 2em; 
+            font-weight: 700; 
+            margin: auto; 
+            text-align: center;
+        }
+
+        .textInput {
+            height: 2.5em; 
+            font-size: 1.2em;
+            font-weight: 700; 
+            text-align: center;
+            margin: 0 .3em;
+            width: 48%; 
+        }
+
+        #go {
+            width: 250px; 
+            height: 200px; 
+            font-size: 1.5em;
+            font-weight: 700; 
+
+        }
+
+        h1 {
+            margin: 1em auto; 
+            width: 100%; 
+            margin-bottom: 1em; 
+            text-align: center;
+            font-weight: 600; 
+        }
+
+        #button {
+            margin: 1em auto; 
+            display: flex; 
+            width: 80%; 
+            justify-content: center;
+        }
+
+        #divAus {
+            display: flex; 
+            width: 100%; 
+            justify-items: center; 
+            margin: auto; 
+        }
+
+        #seed {
+            font-size: 18px;
+            margin: auto; 
+            margin-top: 12px; 
+        }
+
+        body {
+            text-align: center;
+        }
+
+        #mainurl {
+            color: #aaa; 
+            font-size: 18px;
+        }
+
+        .link {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+    </style>
 </head>
 <body>
     <div id="main">
@@ -22,12 +110,37 @@
         <div id="ausgabe">[&nbsp;&nbsp; &gt; &gt;&nbsp;&nbsp;...&nbsp;&nbsp;&lt; &lt; &nbsp;&nbsp;]</div>
     </div>
     <a href="https://klausmistlberger.rocks" id="mainurl">klausmistlberger.rocks</a>
+    <!-- <script src="lib/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="lib/myLib.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        const rndNum = function (lo, hi) {
+            return Math.floor(Math.random() * (hi - lo + 1)) + lo;
+        };
+        const ausgabe = $( '#ausgabe' );
+        const eitherOr = () => {
+            // Einlesen
+            let _entweder = $( '#entweder' ).val();
+            let _oder = $( '#oder' ).val();
 
+            // Seed + Ausgabe erzeugen
+            let seedNum = rndNum(0, 100);
+            const output = ( output ) => '[&nbsp;&nbsp; &gt; &gt; &nbsp;&nbsp;' + output + '&nbsp;&nbsp; &lt; &lt; &nbsp;&nbsp;]';
+            seedNum === 0 ? ausgabe.html( 'Keine Ahnung, wirf eine Münze' ) : ( seedNum % 2 === 1 ? ausgabe.html( output( _entweder ) ) : ausgabe.html( output( _oder) ) );
+        };
 
-    <script src="lib/jquery-3.6.0.min.js"></script>
-    <script src="lib/myLib.js"></script>
-    <script src="js/entwederoder.js">
+        // Enter-Key
+        $( 'body' ).on( 'keyup', (e)=>{
+            if ( e.keyCode === 13) {
+                eitherOr();
+            }
+        });
 
+        // Click
+        $( '#go' ).on( 'click', ()=>{
+            eitherOr();
+        });
+        
     </script>
 </body>
 </html>
